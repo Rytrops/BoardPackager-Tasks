@@ -34,4 +34,22 @@ RSpec.describe "Tasks", type: :request do
       expect(JSON.parse(response.body)).to eq({"error"=>{"description"=>["can't be blank"], "due_date"=>["can't be blank"]}})
     end
   end
+
+  describe "PATCH /tasks" do
+    it 'updates an existing task if valid' do
+      task = Task.create(title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in imperdiet lacus. Nulla sodales, tortor ac bibendum blandit, purus neque aliquet metus, vitae finibus ex felis sed urna. Fusce aliquet purus metus, vitae congue nulla pharetra eu. Nulla quis laoreet sem, at egestas dui.', completed: false, due_date: DateTime.new(2021, 8, 29, 22, 35, 0) )
+      patch "/api/v1/tasks/#{task.id}", params: {task: {title: 'Test Task'}}
+      expect(response).to have_http_status(200)
+      expect(JSON.parse(response.body)).to eq("message" => "Task successfully updated.")
+      get "/api/v1/tasks/#{task.id}"
+      expect(JSON.parse(response.body)['data']['attributes']['title']).to eq('Test Task')
+    end
+
+    it 'returns an error if the task is not valid' do
+      task = Task.create(title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in imperdiet lacus. Nulla sodales, tortor ac bibendum blandit, purus neque aliquet metus, vitae finibus ex felis sed urna. Fusce aliquet purus metus, vitae congue nulla pharetra eu. Nulla quis laoreet sem, at egestas dui.', completed: false, due_date: DateTime.new(2021, 8, 29, 22, 35, 0) )
+      patch "/api/v1/tasks/#{task.id}", params: {task: {title: ''}}
+      expect(response).to have_http_status(422)
+      expect(JSON.parse(response.body)).to eq({"error" => {"title"=>["can't be blank"]}})
+    end
+  end
 end

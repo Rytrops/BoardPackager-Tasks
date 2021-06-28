@@ -13,20 +13,27 @@ module Api
       end
 
       def create
-        task = Task.new(create_task_params)
-
+        task = Task.new(task_params)
         if task.save
-          render json: {message: 'Task successfully created.'}, status: 200
+          render json: { message: 'Task successfully created.' }, status: 200
         else
-          render json: {error: task.errors.messages}, status: 422
+          render json: { error: task.errors.messages }, status: 422
         end
+      end
 
-
+      def update
+        task = Task.find_by(id: params[:id])
+        if task.update(task_params)
+          render json: { message: 'Task successfully updated.' }, status: 200
+        else
+          render json: { error: task.errors.messages }, status: 422
+        end
+  
       end
 
       private
 
-      def create_task_params
+      def task_params
         params.require(:task).permit(:title, :description, :due_date, :completed)
 
       end
