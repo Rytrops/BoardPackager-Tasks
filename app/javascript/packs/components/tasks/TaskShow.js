@@ -10,6 +10,7 @@ import {
   Alert,
   Button,
 } from 'react-bootstrap';
+import EditTask from './EditTask';
 
 const TaskShow = () => {
   const [task, setTask] = useState([]);
@@ -61,6 +62,7 @@ const TaskShow = () => {
                 </Card.Body>
               </Card>
             </Col>
+            <EditTask task={task} id={id} />
           </Row>
         </Container>
       </div>

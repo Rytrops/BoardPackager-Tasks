@@ -8,18 +8,18 @@ import {
   Card,
   Form,
   Alert,
-  FormCheck,
-  FormControl,
 } from 'react-bootstrap';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
-
+import { useHistory } from 'react-router-dom';
 const CreateTask = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [completed, setCompleted] = useState(false);
   const [dueDate, setDueDate] = useState('');
   const [errorMessage, setErrorMessage] = useState({});
+
+  const history = useHistory();
 
   const handleDateChange = (date) => {
     let dateTime = date.format();
@@ -38,7 +38,7 @@ const CreateTask = () => {
         },
       })
       .then((resp) => {
-        console.log(resp);
+        setErrorMessage(resp.data);
       })
       .catch((error) => {
         setErrorMessage(error.response.data.error);
@@ -57,7 +57,8 @@ const CreateTask = () => {
             Object.entries(errorMessage).map((parameter, error) => {
               return (
                 <Alert
-                  variant='danger'
+                  key={[parameter]}
+                  variant='info'
                   className='text-center'
                   onClose={() => setErrorMessage('')}
                   dismissible

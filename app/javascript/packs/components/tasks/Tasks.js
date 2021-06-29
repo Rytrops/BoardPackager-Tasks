@@ -11,7 +11,7 @@ import {
 } from 'react-bootstrap';
 import Task from './Task';
 
-const Tasks = () => {
+const Tasks = (props) => {
   const [tasks, setTasks] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -22,6 +22,7 @@ const Tasks = () => {
       setIsLoaded(true);
     });
   }, []);
+  const checkSuccessMessage = () => {};
 
   return (
     isLoaded && (
