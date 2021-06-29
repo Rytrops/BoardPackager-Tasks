@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import axios from 'axios';
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Table,
-  Alert,
-  Button,
-} from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
+import EditTask from './EditTask';
 
 const TaskShow = () => {
   const [task, setTask] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   const { id } = useParams();
-  const { title, description, due_date, completed, created_at, overdue } = task;
+  const {
+    title,
+    description,
+    due_date,
+    completed,
+    created_at,
+    overdue,
+    due_today: dueToday,
+  } = task;
 
   useEffect(() => {
     axios.get(`/api/v1/tasks/${id}`).then((resp) => {
@@ -61,6 +62,7 @@ const TaskShow = () => {
                 </Card.Body>
               </Card>
             </Col>
+            <EditTask task={task} id={id} />
           </Row>
         </Container>
       </div>

@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Table,
-  Alert,
-  Button,
-} from 'react-bootstrap';
+import { Col, Card } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
 const Task = ({ props, id }) => {

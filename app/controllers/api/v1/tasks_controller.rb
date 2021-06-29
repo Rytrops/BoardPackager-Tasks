@@ -28,8 +28,18 @@ module Api
         else
           render json: { error: task.errors.messages }, status: 422
         end
-  
       end
+
+      def destroy
+        task = Task.find_by(id: params[:id])
+
+        if task.destroy
+          render json: { message: "Task deleted."}, status: 200
+        else
+          render json: { error: task.errors.messages }, status: 422
+        end
+      end
+
 
       private
 
