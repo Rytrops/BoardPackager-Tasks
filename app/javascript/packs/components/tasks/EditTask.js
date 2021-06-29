@@ -1,18 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {
-  Container,
-  Button,
-  Row,
-  Col,
-  Card,
-  Form,
-  Alert,
-  ButtonGroup,
-} from 'react-bootstrap';
+import { Button, Col, Card, Form, Alert, ButtonGroup } from 'react-bootstrap';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const EditTask = ({ task, id }) => {
   const [title, setTitle] = useState(task.title);

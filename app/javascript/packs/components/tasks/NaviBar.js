@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Navbar,
-  Nav,
-  Button,
-  NavDropdown,
-  DropdownButton,
-} from 'react-bootstrap';
+import { Navbar, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
 const NaviBar = () => {

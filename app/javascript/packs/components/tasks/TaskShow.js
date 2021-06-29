@@ -1,21 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import axios from 'axios';
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Table,
-  Alert,
-  Button,
-} from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import EditTask from './EditTask';
 
 const TaskShow = () => {
   const [task, setTask] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [showDueToday, setShowDueToday] = useState(false);
 
   const { id } = useParams();
   const {
@@ -45,8 +36,6 @@ const TaskShow = () => {
       return 'primary';
     }
   };
-
-  console.log(dueToday);
 
   return (
     isLoaded && (

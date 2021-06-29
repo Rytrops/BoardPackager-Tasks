@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Table,
-  Alert,
-  Button,
-} from 'react-bootstrap';
+import { Container, Row, Button } from 'react-bootstrap';
 import Task from './Task';
 
 const Tasks = (props) => {
@@ -41,12 +33,10 @@ const Tasks = (props) => {
           <Row xs={2} sm={3} md={3}>
             {tasks.map((task) => {
               if (showDueToday && task.attributes.due_today) {
-                console.log(task.attributes.due_today);
                 return (
                   <Task props={task.attributes} key={task.id} id={task.id} />
                 );
               } else if (!showDueToday) {
-                console.log('else');
                 return (
                   <Task props={task.attributes} key={task.id} id={task.id} />
                 );
