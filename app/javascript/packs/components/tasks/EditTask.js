@@ -21,6 +21,8 @@ const EditTask = ({ task, id }) => {
   const [dueDate, setDueDate] = useState(task.due_date);
   const [errorMessage, setErrorMessage] = useState({});
 
+  const history = useHistory();
+
   const handleDateChange = (date) => {
     let dateTime = date.format();
     setDueDate(dateTime);
@@ -48,7 +50,15 @@ const EditTask = ({ task, id }) => {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    axios.delete(`/api/v1/tasks/${id}`);
+    axios
+      .delete(`/api/v1/tasks/${id}`)
+      .then((resp) => {
+        setErrorMessage(resp.data);
+        history.push('/');
+      })
+      .catch((error) => {
+        setErrorMessage(error.response.data.error);
+      });
   };
 
   return (
