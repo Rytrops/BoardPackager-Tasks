@@ -20,7 +20,6 @@ const EditTask = ({ task, id }) => {
   const [completed, setCompleted] = useState(task.completed);
   const [dueDate, setDueDate] = useState(task.due_date);
   const [errorMessage, setErrorMessage] = useState({});
-  console.log(title);
 
   const handleDateChange = (date) => {
     let dateTime = date.format();
@@ -47,7 +46,11 @@ const EditTask = ({ task, id }) => {
       });
   };
 
-  console.log(completed);
+  const handleDelete = (e) => {
+    e.preventDefault();
+    axios.delete(`/api/v1/tasks/${id}`);
+  };
+
   return (
     <Col className='pt-5'>
       <div>
@@ -123,8 +126,19 @@ const EditTask = ({ task, id }) => {
             </ButtonGroup>
           </Form.Group>
 
-          <Button variant='dark' size='lg' type='submit'>
+          <Button variant='dark' block size='lg' type='submit'>
             Edit Task
+          </Button>
+          <Button
+            variant='danger'
+            block
+            size='lg'
+            type='click'
+            onClick={(e) => {
+              handleDelete(e);
+            }}
+          >
+            Delete Task
           </Button>
         </Form>
       </Card>

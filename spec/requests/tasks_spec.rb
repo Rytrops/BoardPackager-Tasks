@@ -52,4 +52,14 @@ RSpec.describe "Tasks", type: :request do
       expect(JSON.parse(response.body)).to eq({"error" => {"title"=>["can't be blank"]}})
     end
   end
+
+  describe "DELETE /tasks" do
+    it "deletes a task" do
+      task = Task.create(title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in imperdiet lacus. Nulla sodales, tortor ac bibendum blandit, purus neque aliquet metus, vitae finibus ex felis sed urna. Fusce aliquet purus metus, vitae congue nulla pharetra eu. Nulla quis laoreet sem, at egestas dui.', completed: false, due_date: DateTime.new(2021, 8, 29, 22, 35, 0) )
+      delete "/api/v1/tasks/#{task.id}"
+      expect(response).to have_http_status(200)
+      expect(JSON.parse(response.body)).to eq({"message" => "Task deleted."})
+      expect(Task.find_by(id: task.id)).to eq(nil)
+    end
+  end
 end
