@@ -7,7 +7,7 @@ import {
   Link,
 } from 'react-router-dom';
 import Tasks from './tasks/Tasks';
-import Task from './tasks/Task';
+import TaskShow from './tasks/TaskShow';
 
 const App = () => {
   return (
@@ -15,7 +15,7 @@ const App = () => {
       <Router>
         <Switch>
           <Route exact path='/' component={Tasks} />
-          <Route exact path='/tasks/:id' component={Task} />
+          <Route exact path='/tasks/:id' component={TaskShow} />
         </Switch>
       </Router>
     </div>
