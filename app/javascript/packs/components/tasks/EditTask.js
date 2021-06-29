@@ -29,6 +29,22 @@ const EditTask = ({ task, id }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    axios
+      .patch(`/api/v1/tasks/${id}`, {
+        task: {
+          title,
+          description,
+          due_date: dueDate,
+          completed,
+        },
+      })
+      .then((resp) => {
+        setErrorMessage(resp.data);
+        window.location.reload();
+      })
+      .catch((error) => {
+        setErrorMessage(error.response.data.error);
+      });
   };
 
   console.log(completed);
