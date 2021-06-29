@@ -16,15 +16,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-// import $ from 'jquery';
-// import { Switch, Route, Router } from 'react-router-dom';
-// import Popper from 'popper.js';
-// import 'bootstrap/dist/js/bootstrap.bundle.min';
-
-// import 'bootstrap';
-// import 'bootstrap/scss/bootstrap';
-
-// import '../stylesheets/application';
+import $ from 'jquery';
+import { Switch, Route, Router } from 'react-router-dom';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
