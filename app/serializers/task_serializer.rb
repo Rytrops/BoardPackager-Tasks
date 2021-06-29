@@ -12,4 +12,8 @@ class TaskSerializer
   attribute :overdue do |task|
     task.due_date.strftime("%d-%m-%Y %H:%M") <= DateTime.now.strftime("%d-%m-%Y %H:%M")
   end
+
+  attribute :due_today do |task|
+    task.due_date.strftime("%d-%m-%Y") == DateTime.now.strftime("%d-%m-%Y")
+  end
 end

@@ -15,9 +15,18 @@ import EditTask from './EditTask';
 const TaskShow = () => {
   const [task, setTask] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showDueToday, setShowDueToday] = useState(false);
 
   const { id } = useParams();
-  const { title, description, due_date, completed, created_at, overdue } = task;
+  const {
+    title,
+    description,
+    due_date,
+    completed,
+    created_at,
+    overdue,
+    due_today: dueToday,
+  } = task;
 
   useEffect(() => {
     axios.get(`/api/v1/tasks/${id}`).then((resp) => {
@@ -36,6 +45,8 @@ const TaskShow = () => {
       return 'primary';
     }
   };
+
+  console.log(dueToday);
 
   return (
     isLoaded && (
