@@ -9,7 +9,7 @@ RSpec.describe Task, type: :model do
 
 
      it 'should save a valid record' do
-      task = Task.new(title: "Test Task", description: "description goes here", completed: false, due_date: '2021-06-29')
+      task = Task.new(title: "Test Task", description: "description goes here",due_date: '2021-06-29')
       expect(task.valid?).to be(true)
       task.save
       expect(Task.count).to be(1)
