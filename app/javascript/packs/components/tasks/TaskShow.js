@@ -32,8 +32,8 @@ const TaskShow = () => {
       return 'danger';
     } else if (completed) {
       return 'success';
-    } else {
-      return 'primary';
+    } else if (!completed) {
+      return 'danger';
     }
   };
 

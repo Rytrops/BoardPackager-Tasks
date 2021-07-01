@@ -16,8 +16,8 @@ const Task = ({ props, id }) => {
       return 'danger';
     } else if (completed) {
       return 'success';
-    } else {
-      return 'primary';
+    } else if (!completed) {
+      return 'danger';
     }
   };
 

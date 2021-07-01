@@ -15,11 +15,10 @@ const Tasks = (props) => {
       setIsLoaded(true);
     });
   }, []);
-  const checkSuccessMessage = () => {};
 
   return (
     isLoaded && (
-      <div className='bg-light h-100'>
+      <div className='bg-light vh-100'>
         <Container className='pt-5'>
           <Row className='pb-2'>
             <Button

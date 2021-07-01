@@ -8,7 +8,7 @@ import NaviBar from './tasks/NaviBar';
 
 const App = () => {
   return (
-    <div className='bg-light vh-100'>
+    <div className='bg-light h-100'>
       <Router>
         <NaviBar />
         <Switch>
